@@ -7,8 +7,9 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <CitySearch />
-        <EventList />
+        {/* <CitySearch />
+        <EventList /> */}
+        <h1>Test</h1>
       </div>
     );
   }
