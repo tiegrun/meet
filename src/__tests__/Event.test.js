@@ -8,7 +8,7 @@ describe('<Event /> component', () => {
   let EventWrapper;
 
   beforeAll(() => {
-    EventWrapper = shallow(<Event events={mockData}/>);
+    EventWrapper = shallow(<Event/>);
   });
 
   test('test that componet is rendered', () => {
@@ -28,7 +28,7 @@ describe('<Event /> component', () => {
   });
 
   test('test that eventOverview children are rendered', () => {
-    expect(EventWrapper.find('.eventOverview').children()).toHaveLength(2);
+    expect(EventWrapper.find('.eventOverview').children()).toHaveLength(1);
   });
 
   test('test that eventDetails children are rendered', () => {
@@ -48,5 +48,13 @@ describe('<Event /> component', () => {
     });
     EventWrapper.find('.detailsBtn').simulate('click');
     expect(EventWrapper.state('showDetails')).toBe(true);
+  });
+
+  test('click on button should hide details', () => {
+    EventWrapper.setState({
+      showDetails: true
+    });
+    EventWrapper.find('.detailsBtn').simulate('click');
+    expect(EventWrapper.state('showDetails')).toBe(false);
   });
 })
