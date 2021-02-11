@@ -3,7 +3,7 @@ import './App.css';
 import EventList from './EventList';
 import CitySearch from './CitySearch';
 import NumberOfEvents from './NumberOfEvents';
-// import { mockData } from './mock-data';
+import { mockData } from './mock-data';
 import { extractLocations, getEvents } from './api';
 import "./nprogress.css";
 
@@ -11,6 +11,7 @@ class App extends Component {
 
   state = {
     events: [],
+    // events: (Object.values({ mockData }))[0]
     locations: [],
     numberOfEvents: 32
   }
@@ -86,8 +87,6 @@ class App extends Component {
 
   render() {
     
-    console.log("events count - ------", this.state.numberOfEvents)
-
     return (
       <div className="App">
         <CitySearch locations={this.state.locations} updateEvents={this.updateEvents} numberOfEvents={this.state.numberOfEvents} />
