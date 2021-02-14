@@ -8,7 +8,7 @@ describe('<Event /> component', () => {
   let EventWrapper;
 
   beforeAll(() => {
-    EventWrapper = shallow(<Event/>);
+    EventWrapper = shallow(<Event event={mockData[0]} />);
   });
 
   test('test that componet is rendered', () => {

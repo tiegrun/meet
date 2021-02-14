@@ -3,7 +3,7 @@ import './App.css';
 import EventList from './EventList';
 import CitySearch from './CitySearch';
 import NumberOfEvents from './NumberOfEvents';
-import { mockData } from './mock-data';
+// import { mockData } from './mock-data';
 import { extractLocations, getEvents } from './api';
 import "./nprogress.css";
 
@@ -28,9 +28,8 @@ class App extends Component {
         this.setState({ 
           events: showEvents, 
           locations: extractLocations(events),
-          // numberOfEvents: 5
         });
-        // console.log('dasasasasasa')
+        // console.log(React.version);
       }
     });
   }
@@ -49,7 +48,6 @@ class App extends Component {
 
       const eventsByCount = events.slice(0, eventCount);  
       
-
         if(locationEvents === events){
 
           this.setState({
@@ -57,7 +55,7 @@ class App extends Component {
          
           numberOfEvents: eventCount
         })
-        console.log("if", "locationEvents", locationEvents)
+
         }
          else if(locationEvents.length === 0){
 
@@ -67,8 +65,6 @@ class App extends Component {
             numberOfEvents: eventCount
           })
 
-          console.log("else if -----", locationEvents);
-         
          }
        
        else {
@@ -78,11 +74,8 @@ class App extends Component {
           
           numberOfEvents: eventCount
         })
-        console.log("locationEvents", locationEvents)
        }
     });
-
-   
   }
 
   render() {

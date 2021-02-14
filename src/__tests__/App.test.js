@@ -70,9 +70,11 @@ describe('<App /> integration', () => {
 
   test('get list of events when user inputs number', async () => {
     const AppWrapper = mount(<App />);
-    const numberOfItems = AppWrapper.find(NumberOfEvents).find('#numberOfEventsInput');
-   ///
-   ///
+    const AppNumbersState = AppWrapper.state('NumberOfEvents');
+    // const numberOfItems = AppWrapper.find(NumberOfEvents).find('#numberOfEventsInput');
+    // expect(AppNumbersState).not.toEqual(undefined);
+    // expect(AppWrapper.find(NumberOfEvents).state("eventCount")).toEqual(AppNumbersState);
+    // AppWrapper.unmount();
   });
 
 

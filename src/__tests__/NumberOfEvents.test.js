@@ -14,20 +14,20 @@ describe('<NumberOfEvents /> component', () => {
   });
   
   test('render text input correctly', () => {
-    const numberOfEvents = NumberOfEventsWrapper.state('numberOfEvents');
+    const numberOfEvents = NumberOfEventsWrapper.state('eventCount');
     expect(NumberOfEventsWrapper.find('#numberOfEventsInput').prop('value')).toBe(numberOfEvents);
   });
 
   test('change state when input changes', () => {
-    const eventObject = { target: { value: 32 }};
+    const eventObject = { target: { value: 30 }};
     NumberOfEventsWrapper.find('#numberOfEventsInput').simulate('change', eventObject);
-    expect(NumberOfEventsWrapper.state('numberOfEvents')).toBe(32);
+    expect(NumberOfEventsWrapper.state('eventCount')).toBe(30);
   });
 
   test('change state when input changes', () => {
     const eventObject = { target: { value: 24 }};
     NumberOfEventsWrapper.find('#numberOfEventsInput').simulate('change', eventObject);
-    expect(NumberOfEventsWrapper.state('numberOfEvents')).toBe(24);
+    expect(NumberOfEventsWrapper.state('eventCount')).toBe(24);
   });
 
   test('show number of events input label', () => {
