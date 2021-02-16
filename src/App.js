@@ -29,7 +29,7 @@ class App extends Component {
           events: showEvents, 
           locations: extractLocations(events),
         });
-        // console.log(React.version);
+        // console.log(this.events);
       }
     });
   }
