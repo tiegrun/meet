@@ -78,10 +78,40 @@ class App extends Component {
     });
   }
 
+   showStatus = (online) => {
+
+    const connectionStatus = document.querySelector('#connectionStatus');
+  
+    if (online) {
+      connectionStatus.innerText = `You're online ! 😄`;
+      connectionStatus.style.background = "green";
+      connectionStatus.style.color = "white";
+    } 
+    else {
+      connectionStatus.innerText = `You are offline, please connect to the Internet to get updated events !!! 😢`;
+      connectionStatus.style.background = "red";
+      connectionStatus.style.color = "white";
+    }
+  }
+  
   render() {
+    window.addEventListener('load', () => {
+      // 1st, we set the correct status when the page loads
+      navigator.onLine ? this.showStatus(true) : this.showStatus(false);
+    
+      // now we listen for network status changes
+      window.addEventListener('online', () => {
+        this.showStatus(true);
+      });
+    
+      window.addEventListener('offline', () => {
+        this.showStatus(false);
+      });
+    });
     
     return (
       <div className="App">
+        <div id="connectionStatus"></div>
         <CitySearch locations={this.state.locations} updateEvents={this.updateEvents} numberOfEvents={this.state.numberOfEvents} />
         <EventList events={this.state.events}/>
         <NumberOfEvents updateEvents={this.updateEvents} locations={this.state.locations}/>
