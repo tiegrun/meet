@@ -6,6 +6,8 @@ import NumberOfEvents from './NumberOfEvents';
 // import { mockData } from './mock-data';
 import { extractLocations, getEvents } from './api';
 import "./nprogress.css";
+import { ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import EventGenre from './EventGenre';
 
 class App extends Component {
 
@@ -93,6 +95,16 @@ class App extends Component {
       connectionStatus.style.color = "white";
     }
   }
+
+  getData = () => {
+    const {locations, events} = this.state;
+    const data = locations.map((location)=>{
+      const number = events.filter((event) => event.location === location).length
+      const city = location.split(' ').shift()
+      return {city, number};
+    })
+    return data;
+  };
   
   render() {
     window.addEventListener('load', () => {
@@ -112,9 +124,28 @@ class App extends Component {
     return (
       <div className="App">
         <div id="connectionStatus"></div>
+        <h4>Choose your nearest city</h4>
         <CitySearch locations={this.state.locations} updateEvents={this.updateEvents} numberOfEvents={this.state.numberOfEvents} />
-        <EventList events={this.state.events}/>
         <NumberOfEvents updateEvents={this.updateEvents} locations={this.state.locations}/>
+        <h4>Events in each city</h4>
+
+        <div className="data-vis-wrapper">
+          <EventGenre events={this.state.events}/>
+
+          <ResponsiveContainer height={400} >
+            <ScatterChart width={800} height={250}
+              margin={{ top: 20, right: 20, bottom: 10, left: 10 }}>
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis type="category" dataKey="city" name="city" />
+              <YAxis type="number" dataKey="number" name="number of events" allowDecimals={false} />
+              <Tooltip cursor={{ strokeDasharray: '3 3' }} />
+              <Scatter data={this.getData()} fill="#8884d8" />
+            </ScatterChart>
+          </ResponsiveContainer>
+        </div>
+        
+        <EventList events={this.state.events}/>
+        
       </div>
     );
   }
